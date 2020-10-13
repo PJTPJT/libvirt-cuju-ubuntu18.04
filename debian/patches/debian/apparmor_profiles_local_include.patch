@@ -1,0 +1,33 @@
+From: Felix Geyer <fgeyer@debian.org>
+Date: Tue, 11 Aug 2015 07:25:01 +0200
+Subject: apparmor_profiles_local_include
+
+Include local apparmor profile
+---
+ examples/apparmor/usr.lib.libvirt.virt-aa-helper | 1 +
+ examples/apparmor/usr.sbin.libvirtd              | 3 +++
+ 2 files changed, 4 insertions(+)
+
+diff --git a/examples/apparmor/usr.lib.libvirt.virt-aa-helper b/examples/apparmor/usr.lib.libvirt.virt-aa-helper
+index 6869685..f806e3c 100644
+--- a/examples/apparmor/usr.lib.libvirt.virt-aa-helper
++++ b/examples/apparmor/usr.lib.libvirt.virt-aa-helper
+@@ -62,5 +62,6 @@ profile virt-aa-helper /usr/{lib,lib64}/libvirt/virt-aa-helper {
+   /**.[iI][sS][oO] r,
+   /**/disk{,.*} r,
+ 
++  # Site-specific additions and overrides. See local/README for details.
+   #include <local/usr.lib.libvirt.virt-aa-helper>
+ }
+diff --git a/examples/apparmor/usr.sbin.libvirtd b/examples/apparmor/usr.sbin.libvirtd
+index 0ddec3f..4d220c2 100644
+--- a/examples/apparmor/usr.sbin.libvirtd
++++ b/examples/apparmor/usr.sbin.libvirtd
+@@ -118,4 +118,7 @@
+ 
+    /usr/{lib,lib64,lib/qemu,libexec}/qemu-bridge-helper rmix,
+   }
++  
++  # Site-specific additions and overrides. See local/README for details.
++  #include <local/usr.sbin.libvirtd>
+ }
